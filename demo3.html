@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>选项卡切换</title>
+		<style>
+			*{margin: 0;padding: 0;list-style: none;}
+			.box{
+				width: 1030px;
+				height: 530px;
+				margin:100px auto 0;
+			}
+			.box ul{width:320px;border: 1px solid #ccc;overflow:hidden;}
+			.box ul li{float:left;position:relative;}
+			.box ul li span{width:1px;height:15px;background-color:#ccc ;position:absolute;right:0;top:12px;}
+			.box ul li a{display:block;width:80px;height:31px;line-height:31px;text-align:center;text-decoration:none;color:#333;border-top:3px solid transparent;}
+			.box a.current{border-color: red;}
+			.box div{border: 1px solid #ccc;display: none;}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="box">
+			<ul id="list">
+				<li><a href="#" class="current">女士精品</a><span></span></li>
+				<li><a href="#">国妆名牌</a><span></span></li>
+				<li><a href="#">男士精品</a><span></span></li>
+				<li><a href="#">清洁用品</a></li>
+			</ul>
+			<div style="display: block;"><img src="img/01.jpg" alt=""></div>
+			<div><img src="img/02.jpg" alt=""></div>
+			<div><img src="img/03.jpg" alt=""></div>
+			<div><img src="img/04.jpg" alt=""></div>
+		</div>
+		<script>
+			var box=document.getElementById('box');
+			var list=document.getElementById('list');
+			var aas=list.getElementsByTagName('a');
+			var divs=box.getElementsByTagName('div');
+			var timer=0;
+			for (var i = 0; i < aas.length; i++) {
+				aas[i].onmouseover=function(){
+					var myThis=this;
+					timer=setTimeout(function(){
+						for (var i = 0; i < aas.length; i++) {
+							aas[i].num=i;
+							aas[i].className='';
+							divs[i].style.display='none';
+						}
+						myThis.className='current';
+						divs[myThis.num].style.display='block';
+					},300);
+				}
+				aas[i].onmouseout=function(){
+					clearTimeout(timer);
+				}
+			}
+		</script>
+	</body>
+</html>
